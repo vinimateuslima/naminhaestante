@@ -1,0 +1,58 @@
+# Ignorar arquivos e diretórios gerados pelo sistema operacional
+.DS_Store
+Thumbs.db
+
+# Ignorar arquivos temporários de editor
+*.swp
+*.swo
+*.swn
+
+# Ignorar arquivos de configuração de IDEs comuns
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Ignorar diretórios e arquivos de build
+node_modules/
+dist/
+build/
+
+# Ignorar arquivos de configuração de dependências
+package-lock.json
+yarn.lock
+
+# Ignorar arquivos de log
+*.log
+
+# Ignorar arquivos de banco de dados locais
+*.sqlite
+*.db
+
+# Ignorar arquivos de configuração de ambiente
+.env
+.env.local
+.env.*.local
+
+# Ignorar arquivos de teste
+coverage/
+*.lcov
+
+# Ignorar arquivos de compilação
+*.class
+*.o
+*.out
+
+# Ignorar arquivos temporários e de cache
+*.tmp
+*.cache
+*.bak
+
+# Ignorar arquivos de pacotes
+*.tgz
+*.zip
+
+# Ignorar arquivos de documentação gerados
+*.pdf
+*.docx
+*.xlsx
