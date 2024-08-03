@@ -1,0 +1,30 @@
+.header {
+    background-color: var(--primary-color);
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    position: sticky;
+    top: 0;
+  }
+  
+  .menu-bars {
+    font-size: 2rem;
+    background-color: none;
+    height: 100%;
+  }
+
+
+
+  .header-menu {
+    background-color: var(--primary-color);
+    width: 250px;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: -100%;
+    transition: 850ms;
+  }

@@ -5,6 +5,22 @@
   font-family: Montserrat;
 }
 
+#root {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+:root {
+  --primary-color: #ff607f;
+  --secondary-color: #000000;
+  --tertiary-color: #ffffff;
+}
+
+.container {
+  max-width: 600px;
+  margin: auto;
+}
+
 img {
   width: 100%;
 }
@@ -20,4 +36,3 @@ a {
 h3 {
   margin-bottom: 1.2rem;
 }
-

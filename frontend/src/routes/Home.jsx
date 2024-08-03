@@ -1,10 +1,14 @@
-import Navbar from "../components/Navbar";
+import Header from "../components/Header";
+
+import './Home.css'
 
 const Home = () => {
   return (
     <>
-      <Navbar />
-      <div>Home</div>
+      <Header />
+      <div id="home">
+        Home
+      </div>
     </>
   );
 };
