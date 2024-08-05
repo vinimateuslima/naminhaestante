@@ -5,6 +5,10 @@
   font-family: Montserrat;
 }
 
+.container {
+  background-color: #E8E8E8;
+}
+
 #root {
   max-width: 600px;
   margin: 0 auto;

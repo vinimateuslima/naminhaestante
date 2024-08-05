@@ -1,3 +1,13 @@
 #home {
+    padding: 0 2em;
     min-height: 100vh;
+}
+
+.bem-vindo {
+    margin: 2em 0;
+    font-size: 1.5em;
+}
+
+.bem-vindo span {
+    color: var(--primary-color);
 }
