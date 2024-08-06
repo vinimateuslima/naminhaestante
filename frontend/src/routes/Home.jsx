@@ -3,6 +3,7 @@ import Carousel from "../components/Carousel/Carousel";
 import axios from "../axios-config";
 
 import CategorySection from "../components/CategorySection/CategorySection";
+import Card from "../components/Card/Card";
 
 import { useState, useEffect } from "react";
 

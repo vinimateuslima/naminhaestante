@@ -7,7 +7,7 @@ import Slider from "react-slick";
 const Carousel = ({children}) => {
   const settings = {
     dots: false,
-    infinite: true,
+    infinite: false,
     speed: 500,
     slidesToShow: 2,
     slidesToScroll: 2,

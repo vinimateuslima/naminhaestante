@@ -1,18 +1,28 @@
-import Carousel from "../Carousel/Carousel"
+import Carousel from "../Carousel/Carousel";
 
-const CategorySection = ({category, books}) => {
+import Card from "../Card/Card";
+
+import './CategorySection.css'
+
+const CategorySection = ({ category, books }) => {
   return (
     <div className="category-section">
-      <h2>{category}</h2>
+      <div className="category"><h2>{category}</h2></div>
       <Carousel>
-      {books.map(book => (
-              <div key={book._id}>
-                <h3>{book.bookId.title}</h3>
-              </div>
-            ))}
+        {books.map((book) => (
+          <Card
+            key={book._id}
+            tumbnail={book.bookId.tumbnail}
+            title={book.bookId.title}
+            authors={book.bookId.authors}
+            rate={book.rating}
+            pageCount={book.bookId.pageCount}
+            currentPage={book.currentPage}
+          />
+        ))}
       </Carousel>
     </div>
-  )
-}
+  );
+};
 
-export default CategorySection
+export default CategorySection;
