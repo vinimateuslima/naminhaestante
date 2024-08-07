@@ -4,7 +4,19 @@ import "./Card.css";
 
 import * as FaIcons from "react-icons/fa6";
 
-const Card = ({ tumbnail, title, authors, rate, pageCount, currentPage }) => {
+import { Link } from "react-router-dom";
+
+import progressCalculator from "../../progressCalculator";
+
+const Card = ({
+  id,
+  tumbnail,
+  title,
+  authors,
+  rate,
+  pageCount,
+  currentPage,
+}) => {
   const rating = new Array(5).fill(<FaIcons.FaRegStar />);
 
   const countRating = (rate) => {
@@ -15,14 +27,8 @@ const Card = ({ tumbnail, title, authors, rate, pageCount, currentPage }) => {
     return rating;
   };
 
-  const progress = (pageCount, currentPage) => {
-
-    return ((currentPage / pageCount) * 100).toFixed(0);
-
-  }
-
   return (
-    <>
+    <Link className="card-link" to={`/books/${id}`}>
       <div className="card-img">
         <img src={tumbnail} alt="" />
       </div>
@@ -39,11 +45,12 @@ const Card = ({ tumbnail, title, authors, rate, pageCount, currentPage }) => {
             ))}
           </div>
           <div className="card-progress">
-            <span>{progress(pageCount, currentPage)}</span><span>%</span>
+            <span>{progressCalculator(pageCount, currentPage)}</span>
+            <span>%</span>
           </div>
         </div>
       </div>
-    </>
+    </Link>
   );
 };
 

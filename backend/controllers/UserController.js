@@ -146,9 +146,40 @@ const addBookToUser = async (req, res) => {
 
     await user.save();
 
-    return res.status(200).json({ msg: "Livro adicionado com sucesso!"});
+    return res.status(200).json({ msg: "Livro adicionado com sucesso!" });
   } catch (error) {
     console.log(error);
+    res.status(500).send("Ocorreu um erro!");
+  }
+};
+
+const getBooksUser = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id).populate("books.bookId");
+
+    if (!user) {
+      return res.status(404).json({ msg: "Usuário não encontrado!" });
+    }
+
+    res.json(user.books);
+  } catch (error) {
+    res.status(500).send("Ocorreu um erro!");
+  }
+};
+
+const getOnlyOneBookUser = async (req, res) => {
+  try {
+    const user = await User.findOne(
+      { "books._id": req.params.id },
+      { "books.$": 1 }
+    ).populate("books.bookId");
+
+    if (!user) {
+      return res.status(404).json({ msg: "Livro não encontrado!" });
+    }
+
+    res.json(user.books[0]);
+  } catch (error) {
     res.status(500).send("Ocorreu um erro!");
   }
 };
@@ -160,4 +191,6 @@ module.exports = {
   deleteUser,
   updateUser,
   addBookToUser,
+  getBooksUser,
+  getOnlyOneBookUser,
 };

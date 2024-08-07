@@ -14,12 +14,12 @@ const Navbar = () => {
         <nav className="navbar">
           <ul className="nav-links">
             <li>
-              <Link to="#">
+              <Link to="/">
                 <IoIcons.IoHome />
               </Link>
             </li>
             <li>
-              <Link to="#">
+              <Link to="/add-book">
                 <FaIcons.FaPlus />
               </Link>
             </li>

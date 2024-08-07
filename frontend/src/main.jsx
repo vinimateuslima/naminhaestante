@@ -8,6 +8,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 // Pages
 import Home from "./routes/Home";
 import AddBook from "./routes/AddBook";
+import Book from "./routes/Book.jsx";
 
 const router = createBrowserRouter([
   {
@@ -22,12 +23,16 @@ const router = createBrowserRouter([
         path: "/add-book",
         element: <AddBook />,
       },
+      {
+        path: "/books/:id",
+        element: <Book />,
+      }
     ],
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router}/>
+    <RouterProvider router={router} />
   </React.StrictMode>
 );

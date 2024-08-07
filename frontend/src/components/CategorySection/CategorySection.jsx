@@ -12,6 +12,7 @@ const CategorySection = ({ category, books }) => {
         {books.map((book) => (
           <Card
             key={book._id}
+            id={book._id}
             tumbnail={book.bookId.tumbnail}
             title={book.bookId.title}
             authors={book.bookId.authors}
