@@ -1,0 +1,15 @@
+.cardBook img {
+  width: 100%;
+  height: 100%;
+  
+}
+
+.cardBook {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.cardBook.selected {
+  border: 4px solid var(--primary-color);
+ transition: border-color 0.3s;
+}

@@ -13,7 +13,7 @@ const CategorySection = ({ category, books }) => {
           <Card
             key={book._id}
             id={book._id}
-            tumbnail={book.bookId.tumbnail}
+            thumbnail={book.bookId.thumbnail}
             title={book.bookId.title}
             authors={book.bookId.authors}
             rate={book.rating}

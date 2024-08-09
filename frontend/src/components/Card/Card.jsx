@@ -10,7 +10,7 @@ import progressCalculator from "../../progressCalculator";
 
 const Card = ({
   id,
-  tumbnail,
+  thumbnail,
   title,
   authors,
   rate,
@@ -30,7 +30,7 @@ const Card = ({
   return (
     <Link className="card-link" to={`/books/${id}`}>
       <div className="card-img">
-        <img src={tumbnail} alt="" />
+        <img src={thumbnail} alt="" />
       </div>
       <div className="card-body">
         <div className="card-title">
