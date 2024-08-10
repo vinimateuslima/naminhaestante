@@ -34,7 +34,13 @@ const ChooseBook = ({ data, updateFieldHandler }) => {
 
   const handleClick = (index, book) => {
     console.log("Clicou", book);
+    updateFieldHandler("googleBookId", book.id);
     updateFieldHandler("title", book.volumeInfo.title);
+    updateFieldHandler("authors", book.volumeInfo.authors);
+    updateFieldHandler("description", book.volumeInfo.description);
+    updateFieldHandler("thumbnail", book.volumeInfo.imageLinks.thumbnail || "");
+    updateFieldHandler("categories", book.volumeInfo.categories);
+    updateFieldHandler("pageCount", book.volumeInfo.pageCount);
     setSelectedCard(index);
   };
 

@@ -1,0 +1,35 @@
+.confirmBook {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  min-height: 80vh;
+  column-gap: 10px;
+}
+
+.confirmBook-img {
+  text-align: center;
+}
+
+.confirmBook-img img {
+  width: 120px;
+}
+
+.confirmBook-info {
+  text-align: center;
+}
+
+.confirmBook-info p {
+  margin-top: 10px;
+}
+
+.confirmBook-info h1 {
+  font-size: 1.5em;
+  margin: 10px 0;
+}
+
+.confirmBook .description {
+  height: 150px;
+  overflow-y: scroll;
+  text-align: left;
+  margin: 10px 0;
+}

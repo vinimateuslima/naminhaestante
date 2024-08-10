@@ -45,7 +45,7 @@ const Book = () => {
       </div>
       <div className="book-body">
         <div className="book-img">
-          <img src={book.bookId.tumbnail} alt="" />
+          <img src={book.bookId.thumbnail} alt="" />
         </div>
         <div className="book-title">
           <h1>{book.bookId.title}</h1>
