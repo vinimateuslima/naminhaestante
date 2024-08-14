@@ -3,9 +3,9 @@ import { useState } from "react";
 export function useForm(steps) {
   const [currentStep, setCurrentStep] = useState(0);
 
-  function changeStep(i, e) {
+  function changeStep(i, e, data) {
     if (e) e.preventDefault();
-
+    if (!data) return console.log(data, "Selecione um livro para continuar");
     if (i < 0 || i >= steps.length) return;
 
     setCurrentStep(i);

@@ -12,37 +12,49 @@ const ChooseBook = ({ data, updateFieldHandler }) => {
   useEffect(() => {
     const getGoogleBooks = async () => {
       try {
-        const apiKey = ""
-        const url =
-          `https://www.googleapis.com/books/v1/volumes?q=harrypotter&maxResults=9&key=${apiKey}`;
+        const apiKey = "";
+        const url = `https://www.googleapis.com/books/v1/volumes?q=harrypotter&maxResults=9&key=${apiKey}`;
+        const response = await fetch(url);
+        const data = await response.json();
 
-        fetch(url)
-          .then((response) => response.json())
-          .then((data) => {
-            console.log(data.items);
-            setBooks(data.items);
-          })
-          .catch((error) => {
-            console.error(error.message);
-          });
+        console.log(data.items);
+        setBooks(data.items);
       } catch (error) {
         console.log(error.message);
       }
     };
 
     getGoogleBooks();
+    setSelectedCard(data.googleBookId);
   }, []);
 
-  const handleClick = (index, book) => {
+  const handleClick = (book) => {
     console.log("Clicou", book);
-    updateFieldHandler("googleBookId", book.id);
-    updateFieldHandler("title", book.volumeInfo.title);
-    updateFieldHandler("authors", book.volumeInfo.authors);
-    updateFieldHandler("description", book.volumeInfo.description);
-    updateFieldHandler("thumbnail", book.volumeInfo.imageLinks.thumbnail || "");
-    updateFieldHandler("categories", book.volumeInfo.categories);
-    updateFieldHandler("pageCount", book.volumeInfo.pageCount);
-    setSelectedCard(index);
+    const {
+      id,
+      volumeInfo: {
+        title,
+        authors = [""],
+        description = "",
+        imageLinks: { thumbnail = "" } = {},
+        categories = [""],
+        pageCount = 0,
+      },
+    } = book;
+
+    // Atualiza todos os campos relevantes com um único objeto
+    updateFieldHandler({
+      googleBookId: id,
+      title,
+      authors,
+      description,
+      thumbnail,
+      categories,
+      pageCount,
+    });
+
+    // Atualiza o estado do livro selecionado
+    setSelectedCard(id);
   };
 
   return (
@@ -53,16 +65,16 @@ const ChooseBook = ({ data, updateFieldHandler }) => {
       </div>
       <div className="grid">
         {books.length > 0 &&
-          books.map((book, index) => (
+          books.map((book) => (
             <CardBookSearch
-              key={index}
+              key={book.id}
               img={
                 book.volumeInfo.imageLinks
                   ? book.volumeInfo.imageLinks.thumbnail
                   : "http://via.placeholder.com/90x142"
               }
-              selected={selectedCard === index}
-              onClick={() => handleClick(index, book)}
+              selected={selectedCard === book.id}
+              onClick={() => handleClick(book)}
             />
           ))}
       </div>

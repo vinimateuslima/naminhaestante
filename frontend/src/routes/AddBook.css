@@ -9,9 +9,8 @@
 .inputs-container {
     display: flex;
     justify-content: center;
-
     width: 100%;
-    min-height: 80vh;
+    height: 70vh;
 }
 
 .actions {
@@ -27,6 +26,10 @@
     color: #ffffff;
     font-weight: 500;
     border: none;
+}
+
+.actions button:disabled {
+    background-color: #A5A5A5;
 }
 
 .resenha span {

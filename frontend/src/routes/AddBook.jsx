@@ -7,6 +7,7 @@ import ChooseBook from "../components/ChooseBook";
 import ConfirmBook from "../components/ConfirmBook";
 import ReviewBook from "../components/ReviewBook";
 import Thanks from "../components/Thanks";
+import Steps from "../components/Steps";
 
 // Hooks
 import { useForm } from "../components/hooks/useForm";
@@ -24,14 +25,15 @@ const formTemplate = {
   status: "Lendo",
   currentPage: 0,
   review: "",
+  index: "",
 };
 
 const AddBook = () => {
   const [data, setData] = useState(formTemplate);
 
-  const updateFieldHandler = (key, value) => {
+  const updateFieldHandler = (fields) => {
     setData((prev) => {
-      return { ...prev, [key]: value };
+      return { ...prev, ...fields};
     });
   };
 
@@ -48,17 +50,20 @@ const AddBook = () => {
   return (
     <div className="add-book">
       <div className="form-container">
-        <p>Etapas</p>
-        <form onSubmit={(e) => changeStep(currentStep + 1, e)}>
+        <Steps currentStep={currentStep} />
+        <form onSubmit={(e) => changeStep(currentStep + 1, e, data)}>
           <div className="inputs-container">{currentComponent}</div>
           <div className="actions">
             {!isFirstStep && (
-              <button type="button" onClick={() => changeStep(currentStep - 1)}>
+              <button
+                type="button"
+                onClick={(e) => changeStep(currentStep - 1, e, data)}
+              >
                 <span>Voltar</span>
               </button>
             )}
             {!isLastStep ? (
-              <button type="submit">
+              <button type="submit" disabled={!data.googleBookId}>
                 <span>Próximo</span>
               </button>
             ) : (
