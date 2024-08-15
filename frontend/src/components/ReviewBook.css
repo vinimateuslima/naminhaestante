@@ -1,7 +1,7 @@
 .reviewBook {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
   text-align: center;
 }
 
@@ -30,6 +30,7 @@
   height: 40px;
   margin: 10px;
   font-size: 2em;
+  text-align: center;
 }
 
 .stars {
@@ -38,11 +39,19 @@
   column-gap: 30px;
 }
 
+.stars input[type="radio"] {
+  display: none;
+}
+
+.star {
+  cursor: pointer;
+}
+
 .stars svg {
   width: 25px;
   height: 25px;
-  color: var(--primary-color);
 }
+
 
 .resenha textarea {
   width: 100%;
