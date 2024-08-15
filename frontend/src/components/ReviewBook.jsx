@@ -6,8 +6,8 @@ import * as FaIcons from "react-icons/fa6";
 const ReviewBook = ({ data, updateFieldHandler }) => {
   const [rating, setRating] = useState(null)
   const [hover, setHover] = useState(null)
-  const [page, setPage] = useState("0");
-console.log(rating)
+
+
   const handleCurrentPage = (e) => {
     const valorAtual = e.target.value;
 
@@ -36,7 +36,8 @@ console.log(rating)
       </div>
       <div className="avaliacao">
         <h3>Como você avalia o livro?</h3>
-        <div className="stars">{[...Array(5)].map((star, index) => {
+        <div className="stars">
+          {[...Array(5)].map((star, index) => {
           const currentRating = index + 1;
           return (
             <label key={index}>
