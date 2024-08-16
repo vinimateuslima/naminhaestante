@@ -4,7 +4,7 @@ import "./ReviewBook.css";
 import * as FaIcons from "react-icons/fa6";
 
 const ReviewBook = ({ data, updateFieldHandler }) => {
-  const [rating, setRating] = useState(null)
+  const [rating, setRating] = useState(data.rating || null)
   const [hover, setHover] = useState(null)
 
 
@@ -19,6 +19,11 @@ const ReviewBook = ({ data, updateFieldHandler }) => {
     }
   };
 
+  const starClick = (currentRating) => {
+    setRating(currentRating)
+    updateFieldHandler({ rating: currentRating})
+  }
+
   return (
     <div className="reviewBook">
       <div className="pagina">
@@ -28,7 +33,7 @@ const ReviewBook = ({ data, updateFieldHandler }) => {
           type="number"
           name=""
           id=""
-          value={data.currentPage || ""}
+          value={data.currentPage}
           onChange={handleCurrentPage}
           maxLength={data.pageCount.toString.length}
           min="0"
@@ -44,7 +49,7 @@ const ReviewBook = ({ data, updateFieldHandler }) => {
               <input type="radio" 
               name="rating"
               value={currentRating}
-              onClick={() => setRating(currentRating)}
+              onClick={() => starClick(currentRating)}
               />
               <FaIcons.FaStar
               className="star"
@@ -62,7 +67,7 @@ const ReviewBook = ({ data, updateFieldHandler }) => {
         <h3>
           Escreva uma resenha <span>(opcional)</span>
         </h3>
-        <textarea name="" id=""></textarea>
+        <textarea name="" id="" maxLength={500}></textarea>
       </div>
     </div>
   );
