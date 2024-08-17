@@ -100,7 +100,7 @@ const addBookToUser = async (req, res) => {
       title,
       authors,
       description,
-      tumbnail,
+      thumbnail,
       categories,
       pageCount,
       status,
@@ -123,7 +123,7 @@ const addBookToUser = async (req, res) => {
         title,
         authors,
         description,
-        tumbnail,
+        thumbnail,
         categories,
         pageCount,
       });

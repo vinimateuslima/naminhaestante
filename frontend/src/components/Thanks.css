@@ -1,0 +1,12 @@
+.thanks {
+    text-align: center;
+}
+
+.thanks h1 {
+    margin-bottom: 50px;
+}
+
+.thanks .thumbnail img {
+    width: 200px;
+    border-radius: 5px;
+}

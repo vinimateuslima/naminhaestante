@@ -4,13 +4,18 @@
 
 .form-container {
     padding: 2em;
+    height: 80vh;
+}
+
+.form-container form {
+    height: 100%;
 }
 
 .inputs-container {
     display: flex;
     justify-content: center;
     width: 100%;
-    height: 70vh;
+    height: 100%;
 }
 
 .actions {

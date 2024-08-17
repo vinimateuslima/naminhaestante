@@ -12,6 +12,9 @@ import Steps from "../components/Steps";
 // Hooks
 import { useForm } from "../components/hooks/useForm";
 import { useState } from "react";
+import { toast } from "react-toastify";
+//Axios
+import axios from "../axios-config";
 
 const formTemplate = {
   googleBookId: "",
@@ -33,8 +36,25 @@ const AddBook = () => {
 
   const updateFieldHandler = (fields) => {
     setData((prev) => {
-      return { ...prev, ...fields};
+      return { ...prev, ...fields };
     });
+  };
+
+  const addBook = async () => {
+    console.log(data);
+    try {
+      const res = await axios.patch(
+        "users/books/66a3f31891ae8751357cda7f",
+        data,
+        {
+          "Content-Type": "application/json",
+        }
+      );
+      toast.success(res.data.msg);
+    } catch (error) {
+      console.log(error);
+      toast.error(error.response.data.msg);
+    }
   };
 
   const formComponents = [
@@ -67,7 +87,7 @@ const AddBook = () => {
                 <span>Próximo</span>
               </button>
             ) : (
-              <button type="button">
+              <button type="button" onClick={addBook}>
                 <span>Salvar</span>
               </button>
             )}
