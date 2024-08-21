@@ -6,6 +6,7 @@ const Steps = ({ currentStep }) => {
     "Vamos começar escolhendo o livro...",
     "Confirme as informações do livro...",
     "...preencha as informações",
+    "Clique em salvar para continuar"
   ];
 
   return (

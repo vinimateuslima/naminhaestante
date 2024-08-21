@@ -10,8 +10,6 @@ import { toast } from "react-toastify";
 
 import * as FaIcons from "react-icons/fa";
 
-import * as FaIcons6 from "react-icons/fa6";
-
 import { CiMenuKebab } from "react-icons/ci";
 
 import progressCalculator from "../progressCalculator";

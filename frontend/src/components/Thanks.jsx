@@ -1,14 +1,31 @@
-import './Thanks.css'
+import "./Thanks.css";
 
-const Thanks = ({data}) => {
+import { toast } from "react-toastify";
+
+import * as FaIcons from "react-icons/fa";
+
+import progressCalculator from "../progressCalculator";
+
+const Thanks = ({ data }) => {
   return (
     <div className="thanks">
-      <h1>Deseja salvar o livro?</h1>
-      <div className="thumbnail">
-        <img src={data.thumbnail} alt="" />
+      <div className="book">
+        <div className="thumbnail">
+          <img src={data.thumbnail} alt="" />
+        </div>
+        <h2>{data.title}</h2>
+        <div className="book-info">
+          <div>
+            <FaIcons.FaStar /> <span>{data.rating}</span>
+          </div>
+          <div>{progressCalculator(data.pageCount, data.currentPage)} %</div>
+        </div>
+        <div className="review">
+        <p>{data.review}</p>
+      </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Thanks
+export default Thanks;

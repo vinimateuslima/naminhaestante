@@ -9,16 +9,15 @@
 }
 
 .card-link {
-    color: var(--secondary-color);
+  color: var(--secondary-color);
 }
 
 .slick-initialized .slick-slide {
   display: flex;
   justify-content: center;
   background-color: white;
-  width: 140px !important;
   border-radius: 5px;
-  margin-right: 50px;
+  background-color: blue;
   height: 230px;
   padding: 1em 0;
 }

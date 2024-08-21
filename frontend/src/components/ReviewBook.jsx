@@ -19,6 +19,10 @@ const ReviewBook = ({ data, updateFieldHandler }) => {
     }
   };
 
+  const handleReview = (e) => {
+    updateFieldHandler({ review: e.target.value });
+  };
+
   const starClick = (currentRating) => {
     setRating(currentRating);
     updateFieldHandler({ rating: currentRating });
@@ -69,7 +73,7 @@ const ReviewBook = ({ data, updateFieldHandler }) => {
         <h3>
           Escreva uma resenha <span>(opcional)</span>
         </h3>
-        <textarea name="" id="" maxLength={500}></textarea>
+        <textarea name="" id="" maxLength={500} onChange={handleReview}></textarea>
       </div>
     </div>
   );

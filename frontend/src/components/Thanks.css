@@ -1,12 +1,23 @@
-.thanks {
-    text-align: center;
+.thanks .book {
+  width: 200px;
 }
 
-.thanks h1 {
-    margin-bottom: 50px;
+.thanks .book h2 {
+  margin: 20px 0;
+}
+
+.thanks .book .review {
+  width: 100%;
+  margin: 20px 0;
+}
+
+.review p {
+  overflow: scroll;
+  height: 50px;
+  word-wrap: break-word;
 }
 
 .thanks .thumbnail img {
-    width: 200px;
-    border-radius: 5px;
+  width: 200px;
+  border-radius: 5px;
 }

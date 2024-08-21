@@ -12,7 +12,10 @@ import Steps from "../components/Steps";
 // Hooks
 import { useForm } from "../components/hooks/useForm";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 //Axios
 import axios from "../axios-config";
 
@@ -33,6 +36,9 @@ const formTemplate = {
 
 const AddBook = () => {
   const [data, setData] = useState(formTemplate);
+  const MySwal = withReactContent(Swal);
+
+  const navigate = useNavigate();
 
   const updateFieldHandler = (fields) => {
     setData((prev) => {
@@ -42,19 +48,37 @@ const AddBook = () => {
 
   const addBook = async () => {
     console.log(data);
-    try {
-      const res = await axios.patch(
-        "users/books/66a3f31891ae8751357cda7f",
-        data,
-        {
-          "Content-Type": "application/json",
+    MySwal.fire({
+      title: "Deseja salvar o livro?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Sim",
+      cancelButtonText: "Não",
+      allowOutsideClick: false,
+      showCloseButton: true,
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const res = await axios.patch(
+            "users/books/66a3f31891ae8751357cda7f",
+            data,
+            {
+              "Content-Type": "application/json",
+            }
+          );
+          toast.success(res.data.msg);
+          setTimeout(() => {
+            navigate("/")
+          }, 2000);
+        } catch (error) {
+          console.log(error);
+          toast.error(error.response.data.msg);
         }
-      );
-      toast.success(res.data.msg);
-    } catch (error) {
-      console.log(error);
-      toast.error(error.response.data.msg);
-    }
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        console.log("Usuário respondeu Não");
+        // Lógica para quando o usuário clica em Não
+      }
+    });
   };
 
   const formComponents = [

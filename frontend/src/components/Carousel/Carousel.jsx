@@ -6,11 +6,20 @@ import Slider from "react-slick";
 
 const Carousel = ({ children }) => {
   const settings = {
+    className: "center",
     dots: false,
     infinite: false,
     speed: 500,
-    slidesToScroll: 1,
+    swipeToSlide: true,
+    slidesToShow: 2,
     arrows: false,
+    centerMode: true,
+    centerPadding: "0px",
+    afterChange: function (index) {
+      console.log(
+        `Slider Changed to: ${index + 1}, background: #222; color: #bada55`
+      );
+    },
   };
   return (
     <div className="slider-container">
