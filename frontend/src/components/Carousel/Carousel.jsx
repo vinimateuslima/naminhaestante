@@ -13,8 +13,6 @@ const Carousel = ({ children }) => {
     swipeToSlide: true,
     slidesToShow: 2,
     arrows: false,
-    centerMode: true,
-    centerPadding: "0px",
     afterChange: function (index) {
       console.log(
         `Slider Changed to: ${index + 1}, background: #222; color: #bada55`
