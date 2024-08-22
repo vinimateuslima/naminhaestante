@@ -60,3 +60,30 @@
   height: 200px;
   overflow: scroll;
 }
+
+.options-menu {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: 50px;
+  right: 10px;
+  row-gap: 10px;
+  border-radius: 8px;
+  z-index: 100;
+}
+
+.option {
+  display: block;
+  padding: 5px 10px;
+  border-radius: 5px;
+  background: none;
+  width: 100%;
+  text-align: center;
+  cursor: pointer;
+  background-color: var(--primary-color);
+  color: #ffffff;
+}
+
+.option.delete {
+  background-color: #969696;
+}

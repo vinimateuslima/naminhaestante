@@ -18,6 +18,7 @@ const Book = () => {
   const { id } = useParams();
 
   const [book, setBook] = useState(null);
+  const [showOptions, setShowOptions] = useState(false);
 
   useEffect(() => {
     const getBook = async () => {
@@ -29,6 +30,10 @@ const Book = () => {
     getBook();
   });
 
+  const toggleOptions = () => {
+    setShowOptions(!showOptions);
+  };
+
   if (!book) return <p>Carregando...</p>;
 
   return (
@@ -37,10 +42,17 @@ const Book = () => {
         <Link className="btn-voltar" to="/">
           <FaIcons.FaArrowLeft />
         </Link>
-        <Link className="btn-menu">
+
+        <Link onClick={toggleOptions} className="btn-menu">
           <CiMenuKebab />
         </Link>
       </div>
+      {showOptions && (
+            <div className="options-menu">
+              <Link className="option">Editar</Link>
+              <Link className="option delete">Excluir</Link>
+            </div>
+          )}
       <div className="book-body">
         <div className="book-img">
           <img src={book.bookId.thumbnail} alt="" />
