@@ -8,6 +8,12 @@ import { Link, useParams } from "react-router-dom";
 
 import { toast } from "react-toastify";
 
+import Swal from "sweetalert2";
+
+import withReactContent from "sweetalert2-react-content";
+
+import { useNavigate } from "react-router-dom";
+
 import * as FaIcons from "react-icons/fa";
 
 import { CiMenuKebab } from "react-icons/ci";
@@ -19,6 +25,10 @@ const Book = () => {
 
   const [book, setBook] = useState(null);
   const [showOptions, setShowOptions] = useState(false);
+
+  const navigate = useNavigate();
+
+  const MySwal = withReactContent(Swal);
 
   useEffect(() => {
     const getBook = async () => {
@@ -32,6 +42,36 @@ const Book = () => {
 
   const toggleOptions = () => {
     setShowOptions(!showOptions);
+  };
+
+  const deleteBook = async (userId, bookId) => {
+    MySwal.fire({
+      title: "Deseja excluir o livro?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Sim",
+      cancelButtonText: "Não",
+      allowOutsideClick: false,
+      showCloseButton: true,
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const res = await axios.patch(`users/${userId}/book/${bookId}`, {
+            "Content-Type": "application/json",
+          });
+          toast.success(res.data.msg);
+          setTimeout(() => {
+            navigate("/");
+          }, 2000);
+        } catch (error) {
+          console.log(error);
+          toast.error(error.response.data.msg);
+        }
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        console.log("Usuário respondeu Não");
+        // Lógica para quando o usuário clica em Não
+      }
+    });
   };
 
   if (!book) return <p>Carregando...</p>;
@@ -48,11 +88,16 @@ const Book = () => {
         </Link>
       </div>
       {showOptions && (
-            <div className="options-menu">
-              <Link className="option">Editar</Link>
-              <Link className="option delete">Excluir</Link>
-            </div>
-          )}
+        <div className="options-menu">
+          <Link className="option">Editar</Link>
+          <Link
+            className="option delete"
+            onClick={() => deleteBook("66a3f31891ae8751357cda7f", id)}
+          >
+            Excluir
+          </Link>
+        </div>
+      )}
       <div className="book-body">
         <div className="book-img">
           <img src={book.bookId.thumbnail} alt="" />

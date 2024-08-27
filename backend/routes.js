@@ -11,6 +11,7 @@ const {
   addBookToUser,
   getBooksUser,
   getOnlyOneBookUser,
+  deleteOnlyOneBookUser,
 } = require("./controllers/UserController");
 
 router.post("/", (req, res) => createUser(req, res));
@@ -28,5 +29,7 @@ router.patch("/books/:id", (req, res) => addBookToUser(req, res));
 router.get("/books/:id", (req, res) => getBooksUser(req, res));
 
 router.get("/book/:id", (req, res) => getOnlyOneBookUser(req, res));
+
+router.patch("/:userId/book/:bookId", (req, res) => deleteOnlyOneBookUser(req, res));
 
 module.exports = router;

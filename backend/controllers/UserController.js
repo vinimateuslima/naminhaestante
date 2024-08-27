@@ -184,6 +184,25 @@ const getOnlyOneBookUser = async (req, res) => {
   }
 };
 
+const deleteOnlyOneBookUser = async (req, res) => {
+  try {
+    const result = await User.updateOne(
+      { _id: req.params.userId, "books._id": req.params.bookId },
+      { $pull: { books: { _id: req.params.bookId } } }
+    );
+
+    if (result.modifiedCount > 0) {
+      res.status(200).json({ msg: "Livro excluído com sucesso!" });
+    } else {
+      return res.status(404).json({ msg: "Livro não encontrado!" });
+    }
+  } catch (error) {
+    res
+      .status(500)
+      .json({ msg: "Erro ao excluir o livro!", error: error.message });
+  }
+};
+
 module.exports = {
   createUser,
   getUsers,
@@ -193,4 +212,5 @@ module.exports = {
   addBookToUser,
   getBooksUser,
   getOnlyOneBookUser,
+  deleteOnlyOneBookUser,
 };

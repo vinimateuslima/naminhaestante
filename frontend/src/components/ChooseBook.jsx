@@ -12,7 +12,7 @@ const ChooseBook = ({ data, updateFieldHandler }) => {
   useEffect(() => {
     const getGoogleBooks = async () => {
       try {
-        const apiKey = "";
+        const apiKey = "AIzaSyCkHU_f9A5tkTVWUdZQ7kmNpp4L1wF8uUs";
         const search = "harry potter"
         const url = `https://www.googleapis.com/books/v1/volumes?q=${search}&maxResults=9&key=${apiKey}`;
         const response = await fetch(url);
