@@ -21,6 +21,7 @@ const UpdateBook = () => {
   const [rating, setRating] = useState(0);
   const [hover, setHover] = useState(null);
   const [review, setReview] = useState(null);
+  const [status, setStatus] = useState(null);
   const [currentPage, setCurrentPage] = useState(null);
   const MySwal = withReactContent(Swal);
   const navigate = useNavigate();
@@ -33,6 +34,7 @@ const UpdateBook = () => {
         setBook(res.data);
         setRating(res.data.rating);
         setCurrentPage(res.data.currentPage);
+        setStatus(res.data.status);
         console.log(book);
       } catch (error) {
         console.error("Erro ao buscar o livro:", error);
@@ -50,7 +52,7 @@ const UpdateBook = () => {
 
   const updateBook = () => {
     const data = {
-      status: "Lendo",
+      status: status,
       currentPage: currentPage,
       rating: rating,
       review: review,
@@ -110,6 +112,10 @@ const UpdateBook = () => {
     setRating(currentRating);
   };
 
+  const handleStatusChange = (e) => {
+    setStatus(e.target.value);
+  };
+
   return (
     <div className="updateBook">
       <div className="book-menu">
@@ -118,6 +124,14 @@ const UpdateBook = () => {
         </Link>
       </div>
       <div className="pagina">
+      <div className="status">
+          <h3>Qual o status do livro?</h3>
+          <select name="" id="" value={status} onChange={handleStatusChange}>
+            <option value="Lendo">Lendo</option>
+            <option value="Quero Ler">Quero Ler</option>
+            <option value="Lido">Lido</option>
+          </select>
+        </div>
         <h3>Em qual página você está?</h3>
         <p>(Este livro possui {book.bookId.pageCount} páginas)</p>
         <input
@@ -160,12 +174,18 @@ const UpdateBook = () => {
         <h3>
           Escreva uma resenha <span>(opcional)</span>
         </h3>
-        <textarea name="" id="" maxLength={500} onChange={handleReview}>
-          {book.review}
-        </textarea>
+        <textarea
+          name=""
+          id=""
+          maxLength={500}
+          onChange={handleReview}
+          defaultValue={book.review}
+        ></textarea>
       </div>
       <div className="updateBook-buttons">
-        <Link className="cancelar" to="/">Cancelar</Link>
+        <Link className="cancelar" to="/">
+          Cancelar
+        </Link>
         <button className="atualizar" onClick={updateBook}>
           Atualizar
         </button>

@@ -108,6 +108,9 @@ const Book = () => {
             <span key={index}>{`${author} `}</span>
           ))}
         </div>
+        <div className="book-status">
+     <p>Status: <span>{book.status}</span></p>
+        </div>
         <div className="book-info">
           <div>
             <p>Avaliação</p>

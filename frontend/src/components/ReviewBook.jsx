@@ -7,6 +7,7 @@ import * as FaIcons from "react-icons/fa6";
 const ReviewBook = ({ data, updateFieldHandler }) => {
   const [rating, setRating] = useState(data.rating || null);
   const [hover, setHover] = useState(null);
+  const [status, setStatus] = useState(data.status || "Lendo");
 
   const handleCurrentPage = (e) => {
     const valorAtual = e.target.value;
@@ -28,9 +29,23 @@ const ReviewBook = ({ data, updateFieldHandler }) => {
     updateFieldHandler({ rating: currentRating });
   };
 
+  const handleStatusChange = (e) => {
+    setStatus(e.target.value);
+    updateFieldHandler({ status: e.target.value });
+    console.log(e.target.value);
+  };
+
   return (
     <div className="reviewBook">
       <div className="pagina">
+        <div className="status">
+          <h3>Qual o status do livro?</h3>
+          <select name="" id="" value={status} onChange={handleStatusChange}>
+            <option value="Lendo">Lendo</option>
+            <option value="Quero Ler">Quero Ler</option>
+            <option value="Lido">Lido</option>
+          </select>
+        </div>
         <h3>Em qual página você está?</h3>
         <p>(Este livro possui {data.pageCount} páginas)</p>
         <input
@@ -73,7 +88,12 @@ const ReviewBook = ({ data, updateFieldHandler }) => {
         <h3>
           Escreva uma resenha <span>(opcional)</span>
         </h3>
-        <textarea name="" id="" maxLength={500} onChange={handleReview}></textarea>
+        <textarea
+          name=""
+          id=""
+          maxLength={500}
+          onChange={handleReview}
+        ></textarea>
       </div>
     </div>
   );
