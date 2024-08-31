@@ -203,6 +203,37 @@ const deleteOnlyOneBookUser = async (req, res) => {
   }
 };
 
+const updateBookUser = async (req, res) => {
+  try {
+    const { status, rating, currentPage, review } = req.body;
+
+    const result = await User.updateOne(
+      {
+        _id: req.params.userId,
+        "books._id": req.params.bookId,
+      },
+      {
+        $set: {
+          "books.$.status": status,
+          "books.$.rating": rating,
+          "books.$.currentPage": currentPage,
+          "books.$.review": review,
+        },
+      }
+    );
+
+    if (result.modifiedCount === 1) {
+      res.status(200).json({ msg: "Livro atualizado com sucesso!" });
+    } else {
+      res.status(404).json({ msg: "Nenhum livro foi atualizado!" });
+    }
+  } catch (error) {
+    res
+      .status(500)
+      .json({ msg: "Erro ao atualizar o livro!", error: error.message });
+  }
+};
+
 module.exports = {
   createUser,
   getUsers,
@@ -213,4 +244,5 @@ module.exports = {
   getBooksUser,
   getOnlyOneBookUser,
   deleteOnlyOneBookUser,
+  updateBookUser,
 };

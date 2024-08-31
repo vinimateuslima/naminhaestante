@@ -12,6 +12,7 @@ const {
   getBooksUser,
   getOnlyOneBookUser,
   deleteOnlyOneBookUser,
+  updateBookUser,
 } = require("./controllers/UserController");
 
 router.post("/", (req, res) => createUser(req, res));
@@ -30,6 +31,12 @@ router.get("/books/:id", (req, res) => getBooksUser(req, res));
 
 router.get("/book/:id", (req, res) => getOnlyOneBookUser(req, res));
 
-router.patch("/:userId/book/:bookId", (req, res) => deleteOnlyOneBookUser(req, res));
+router.patch("/:userId/book/:bookId", (req, res) =>
+  deleteOnlyOneBookUser(req, res)
+);
+
+router.patch("/:userId/updateBook/:bookId", (req, res) =>
+  updateBookUser(req, res)
+);
 
 module.exports = router;

@@ -1,0 +1,57 @@
+.updateBook {
+  display: flex;
+  flex-direction: column;
+
+  row-gap: 50px;
+  text-align: center;
+  padding: 1em;
+  height: 100vh;
+}
+
+.updateBook h3 {
+  margin-bottom: 0.5em;
+}
+
+.updateBook .pagina p {
+  font-size: 0.8em;
+  color: #909090;
+}
+
+.updateBook .pagina input,
+.updateBook textarea {
+  border: 2px solid var(--primary-color);
+  border-radius: 5px;
+  color: var(--primary-color);
+  font-weight: bold;
+  outline: none;
+  background-color: #ffffff;
+}
+
+.updateBook .pagina input {
+  padding: 0.2em;
+  width: 80px;
+  height: 40px;
+  margin: 10px;
+  font-size: 2em;
+  text-align: center;
+}
+
+.updateBook-buttons {
+  display: flex;
+  justify-content: flex-end;
+  column-gap: 10px;
+}
+
+.updateBook-buttons .cancelar {
+  background-color: #a5a5a5;
+}
+.updateBook-buttons button,
+.cancelar {
+  padding: 0.5rem 0.5rem;
+  border-radius: 5px;
+  background-color: var(--primary-color);
+  color: #ffffff;
+  font-weight: 500;
+  border: none;
+  font-size: 0.9em;
+}

@@ -38,7 +38,7 @@ const Book = () => {
     };
 
     getBook();
-  });
+  }, []);
 
   const toggleOptions = () => {
     setShowOptions(!showOptions);
@@ -89,7 +89,7 @@ const Book = () => {
       </div>
       {showOptions && (
         <div className="options-menu">
-          <Link className="option">Editar</Link>
+          <Link className="option" to={`/update-book/${book._id}`}>Editar</Link>
           <Link
             className="option delete"
             onClick={() => deleteBook("66a3f31891ae8751357cda7f", id)}
