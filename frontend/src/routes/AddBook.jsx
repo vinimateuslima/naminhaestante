@@ -32,6 +32,7 @@ const formTemplate = {
   currentPage: 0,
   review: "",
   index: "",
+  search: "",
 };
 
 const AddBook = () => {
