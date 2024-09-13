@@ -24,7 +24,7 @@ const Navbar = () => {
               </Link>
             </li>
             <li>
-              <Link to="#">
+              <Link to="/search">
                 <IoIcons.IoSearch />
               </Link>
             </li>

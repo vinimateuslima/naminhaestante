@@ -36,7 +36,7 @@ const Card = ({
         <div className="card-title">
           <h5>{title}</h5>
         </div>
-        <span className="card-autor">{authors}</span>
+        <span className="card-autor">{authors[0]}</span>
 
         <div className="card-info">
           <div className="card-rating">

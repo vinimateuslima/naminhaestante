@@ -10,6 +10,7 @@ import Home from "./routes/Home";
 import AddBook from "./routes/AddBook";
 import Book from "./routes/Book.jsx";
 import UpdateBook from "./routes/UpdateBook.jsx";
+import Search from "./routes/Search.jsx";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
       {
         path: "/update-book/:id",
         element: <UpdateBook />,
+      },
+      {
+        path: "/search",
+        element: <Search />,
       }
     ],
   },
