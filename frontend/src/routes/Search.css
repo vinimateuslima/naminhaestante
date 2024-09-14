@@ -5,7 +5,7 @@
 
 .search-books input {
   width: 100%;
-  margin-top: 100px;
+  margin-top: 50px;
 }
 
 .search input[type="search"] {
@@ -28,6 +28,21 @@
   width: 25px;
   height: 25px;
   right: 25px;
-  top: 120px;
+  top: 70px;
   color: var(--primary-color);
+}
+
+.search-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 150px); /* 3 colunas */
+  gap: 20px; /* Espaço entre os itens */
+  margin-top: 20px;
+}
+
+.search-card {
+  display: flex;
+  justify-content: center;
+  background-color: #ffffff;
+  padding: 1em;
+  border-radius: 5px;
 }
