@@ -44,3 +44,12 @@ h3 {
 .swal2-confirm {
   background-color: var(--primary-color);
 }
+
+input {
+  border: 2px solid var(--primary-color);
+  border-radius: 5px;
+  color: var(--primary-color);
+  font-weight: bold;
+  outline: none;
+  background-color: #ffffff;
+}

@@ -11,6 +11,7 @@ import AddBook from "./routes/AddBook";
 import Book from "./routes/Book.jsx";
 import UpdateBook from "./routes/UpdateBook.jsx";
 import Search from "./routes/Search.jsx";
+import Login from "./routes/Login/Login.jsx";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
       {
         path: "/search",
         element: <Search />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
       }
     ],
   },

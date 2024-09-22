@@ -34,11 +34,13 @@ const UserSchema = new Schema(
       type: String,
       required: true,
       unique: true,
+      max: 15
     },
     email: {
       type: String,
       required: true,
       unique: true,
+      max: 320
     },
     passwordHash: {
       type: String,

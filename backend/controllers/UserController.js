@@ -41,7 +41,7 @@ const getUsers = async (req, res) => {
 
 const getUser = async (req, res) => {
   try {
-    const user = await User.findById(req.params.id);
+    const user = await User.findOne({ username: req.params.username });
 
     if (!user) {
       return res.status(404).json({ msg: "Usuário não encontrado!" });
@@ -234,6 +234,26 @@ const updateBookUser = async (req, res) => {
   }
 };
 
+const LoginUser = async (req, res) => {
+  try {
+    const user = await User.findOne({ username: req.body.username });
+
+    if (!user) {
+      return res.status(404).json({ msg: "Usuário não encontrado!" });
+    }
+
+    if (user.passwordHash == req.body.passwordHash) {
+      return res.status(200).json({ msg: "Usuário autenticado com sucesso!" });
+    }
+
+    return res.status(404).json({ msg: "Senha incorreta!" });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ msg: "Erro ao atualizar o livro!", error: error.message });
+  }
+};
+
 module.exports = {
   createUser,
   getUsers,
@@ -245,4 +265,5 @@ module.exports = {
   getOnlyOneBookUser,
   deleteOnlyOneBookUser,
   updateBookUser,
+  LoginUser,
 };
