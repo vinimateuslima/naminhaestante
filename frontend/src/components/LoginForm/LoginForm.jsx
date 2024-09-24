@@ -17,7 +17,7 @@ const LoginForm = () => {
     try {
       const data = {
         username: username,
-        passwordHash: password,
+        password: password,
       };
       console.log(data);
       const res = await axios.post(`users/login`, data, {
@@ -43,7 +43,7 @@ const LoginForm = () => {
 
   return (
     <form onSubmit={(e) => handleLogin(e)}>
-        <h3>Realizar login</h3>
+        <h3>Faça o login</h3>
       <input
         type="text"
         name=""

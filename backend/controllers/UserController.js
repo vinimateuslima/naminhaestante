@@ -1,15 +1,28 @@
 const User = require("../models/User");
 const Book = require("../models/Book");
 
+// Criptografia
+const bcrypt = require("bcrypt");
+
 const createUser = async (req, res) => {
   try {
-    const { username, email, passwordHash } = req.body;
+    const { username, email, password } = req.body;
 
-    if (!username || !email || !passwordHash) {
+    const existingUser = await User.findOne({ $or: [{ username }, { email }] });
+
+    if (!username || !email || !password) {
       return res
         .status(400)
         .json({ msg: "Por favor, preencha todos os campos." });
     }
+
+    if (existingUser) {
+      return res.status(409).json({ msg: "Usuário já está cadastrado." });
+    }
+
+    // Criptografar a senha antes de salvar no banco
+    const saltRounds = 10; // Número de rounds para gerar o salt
+    const passwordHash = await bcrypt.hash(password, saltRounds);
 
     const newUser = new User({
       username,
@@ -19,7 +32,7 @@ const createUser = async (req, res) => {
 
     await newUser.save();
 
-    res.json({
+    res.status(201).json({
       msg: "Usuário criado com sucesso!",
       newUser,
     });
@@ -235,22 +248,25 @@ const updateBookUser = async (req, res) => {
 };
 
 const LoginUser = async (req, res) => {
+  const { username, password } = req.body;
+
   try {
-    const user = await User.findOne({ username: req.body.username });
+    const user = await User.findOne({ username });
 
     if (!user) {
       return res.status(404).json({ msg: "Usuário não encontrado!" });
     }
 
-    if (user.passwordHash == req.body.passwordHash) {
+    // Criptografar a senha antes de salvar no banco
+    const isPasswordValid = await bcrypt.compare(password, user.passwordHash);
+
+    if (isPasswordValid) {
       return res.status(200).json({ msg: "Usuário autenticado com sucesso!" });
     }
 
     return res.status(404).json({ msg: "Senha incorreta!" });
   } catch (error) {
-    res
-      .status(500)
-      .json({ msg: "Erro ao atualizar o livro!", error: error.message });
+    res.status(500).json({ msg: "Erro ao fazer login!", error: error.message });
   }
 };
 
