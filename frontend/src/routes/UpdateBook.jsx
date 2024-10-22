@@ -11,6 +11,9 @@ import { Link, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
+//Context
+import { useUser } from "../Context/UserContext";
+
 import * as FaIcons from "react-icons/fa";
 
 const UpdateBook = () => {
@@ -23,10 +26,19 @@ const UpdateBook = () => {
   const [review, setReview] = useState(null);
   const [status, setStatus] = useState(null);
   const [currentPage, setCurrentPage] = useState(null);
+  const { user} = useUser();
+
   const MySwal = withReactContent(Swal);
   const navigate = useNavigate();
 
+  
+
   useEffect(() => {
+
+    if (!user) {
+      return; // Sai da função se o usuário ainda está sendo carregado ou não existe
+    }
+
     const getBook = async () => {
       try {
         const res = await axios.get(`users/book/${id}`);
@@ -69,7 +81,7 @@ const UpdateBook = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const userId = "66a3f31891ae8751357cda7f";
+          const userId = `${user.id}`;
 
           const res = await axios.patch(
             `users/${userId}/updateBook/${id}`,

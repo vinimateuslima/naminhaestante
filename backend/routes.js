@@ -14,11 +14,14 @@ const {
   deleteOnlyOneBookUser,
   updateBookUser,
   LoginUser,
+  checkAuth,
 } = require("./controllers/UserController");
 
 router.post("/", (req, res) => createUser(req, res));
 
 router.get("/", (req, res) => getUsers(req, res));
+
+router.get("/checkAuth", (req, res) => checkAuth(req, res));
 
 router.get("/:username", (req, res) => getUser(req, res));
 
@@ -41,5 +44,7 @@ router.patch("/:userId/updateBook/:bookId", (req, res) =>
 );
 
 router.post("/login", (req, res) => LoginUser(req, res));
+
+
 
 module.exports = router;

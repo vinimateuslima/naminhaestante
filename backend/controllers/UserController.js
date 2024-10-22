@@ -1,5 +1,9 @@
 const User = require("../models/User");
 const Book = require("../models/Book");
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
+
+const TOKEN_KEY = process.env.TOKEN_KEY;
 
 // Criptografia
 const bcrypt = require("bcrypt");
@@ -261,12 +265,38 @@ const LoginUser = async (req, res) => {
     const isPasswordValid = await bcrypt.compare(password, user.passwordHash);
 
     if (isPasswordValid) {
-      return res.status(200).json({ msg: "Usuário autenticado com sucesso!" });
+      const token = jwt.sign(
+        { id: user._id, username: user.username },
+        TOKEN_KEY,
+        {
+          expiresIn: "1h",
+        }
+      );
+
+      return res
+        .status(200)
+        .json({ msg: "Usuário autenticado com sucesso!", token });
     }
 
-    return res.status(404).json({ msg: "Senha incorreta!" });
+    return res.status(401).json({ msg: "Senha incorreta!" });
   } catch (error) {
     res.status(500).json({ msg: "Erro ao fazer login!", error: error.message });
+  }
+};
+
+const checkAuth = async (req, res) => {
+  const token = req.headers.authorization?.split(" ")[1]; // "Bearer <token>"
+
+  if (!token) {
+    return res.status(401).json({ msg: "Acesso negado. Token não fornecido." });
+  }
+
+  try {
+    const verified = jwt.verify(token, TOKEN_KEY);
+    req.user = verified;
+    res.status(200).json({ msg: "Usuário autenticado", user: verified });
+  } catch (error) {
+    return res.status(403).json({ msg: "Token inválido ou expirado!" });
   }
 };
 
@@ -282,4 +312,5 @@ module.exports = {
   deleteOnlyOneBookUser,
   updateBookUser,
   LoginUser,
+  checkAuth,
 };

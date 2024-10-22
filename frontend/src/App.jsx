@@ -14,6 +14,7 @@ function App() {
   const hideNavbarRoutes = ["/login", "/signup"]; // Rotas para ocultar a Navbar
 
   return (
+ 
     <div className="App">
       <ToastContainer
         position="top-right"
@@ -30,6 +31,7 @@ function App() {
         {!hideNavbarRoutes.includes(location.pathname) && <Navbar />}
       </div>
     </div>
+  
   );
 }
 

@@ -19,6 +19,9 @@ import withReactContent from "sweetalert2-react-content";
 //Axios
 import axios from "../axios-config";
 
+//Context
+import { useUser } from "../Context/UserContext";
+
 const formTemplate = {
   googleBookId: "",
   title: "",
@@ -38,6 +41,11 @@ const formTemplate = {
 const AddBook = () => {
   const [data, setData] = useState(formTemplate);
   const MySwal = withReactContent(Swal);
+  const { user, loading } = useUser();
+
+  if (loading || !user) {
+    return; // Sai da função se o usuário ainda está sendo carregado ou não existe
+  }
 
   const navigate = useNavigate();
 
@@ -61,7 +69,7 @@ const AddBook = () => {
       if (result.isConfirmed) {
         try {
           const res = await axios.patch(
-            "users/books/66a3f31891ae8751357cda7f",
+            `users/books/${user.id}`,
             data,
             {
               "Content-Type": "application/json",
@@ -69,7 +77,7 @@ const AddBook = () => {
           );
           toast.success(res.data.msg);
           setTimeout(() => {
-            navigate("/")
+            navigate("/");
           }, 2000);
         } catch (error) {
           console.log(error);

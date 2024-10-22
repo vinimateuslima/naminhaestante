@@ -8,15 +8,24 @@ import Card from "../components/Card/Card";
 import { useState, useEffect } from "react";
 
 import "./Home.css";
+import { useUser } from "../Context/UserContext";
 
 const Home = () => {
   // const [books, setBooks] = useState([]);
   const [categories, setCategories] = useState([]);
+  const { user, loading } = useUser();
 
   useEffect(() => {
+    // Verifica se o usuário está carregando ou é nulo
+    if (loading || !user) {
+      return; // Sai da função se o usuário ainda está sendo carregado ou não existe
+    }
+
+    console.log(user);
+
     const getBooks = async () => {
       try {
-        const res = await axios.get("users/books/66a3f31891ae8751357cda7f");
+        const res = await axios.get(`users/books/${user.id}`);
 
         const categorizedBooks = res.data.reduce((accumulator, book) => {
           book.bookId.categories.forEach((category) => {
@@ -35,16 +44,20 @@ const Home = () => {
     };
 
     getBooks();
-  }, []);
+  }, [user]);
 
   const categoryKeys = Object.keys(categories);
+
+  if (loading) {
+    return <div>Carregando...</div>; // Feedback visual enquanto carrega
+  }
 
   return (
     <>
       <Header />
       <div id="home">
         <h1 className="bem-vindo">
-          Bem vindo(a), <span>Usuário</span>
+          Bem vindo(a), <span>{user.username}</span>
         </h1>
         <Carousel />
         {console.log(categories)}

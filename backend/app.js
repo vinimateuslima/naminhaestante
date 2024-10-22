@@ -2,7 +2,13 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 
-app.use(cors());
+
+const corsOptions = {
+  origin: 'http://localhost:5173', // URL do seu frontend
+  credentials: true, // Permite cookies com a requisição
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.static("public"));
 

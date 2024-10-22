@@ -20,17 +20,27 @@ import { CiMenuKebab } from "react-icons/ci";
 
 import progressCalculator from "../progressCalculator";
 
+//Context
+import { useUser } from "../Context/UserContext";
+
 const Book = () => {
   const { id } = useParams();
 
   const [book, setBook] = useState(null);
   const [showOptions, setShowOptions] = useState(false);
+  const { user, loading } = useUser();
 
   const navigate = useNavigate();
 
   const MySwal = withReactContent(Swal);
+  
 
   useEffect(() => {
+
+    if (loading || !user) {
+      return; // Sai da função se o usuário ainda está sendo carregado ou não existe
+    }
+
     const getBook = async () => {
       const res = await axios.get(`users/book/${id}`);
 
@@ -92,7 +102,7 @@ const Book = () => {
           <Link className="option" to={`/update-book/${book._id}`}>Editar</Link>
           <Link
             className="option delete"
-            onClick={() => deleteBook("66a3f31891ae8751357cda7f", id)}
+            onClick={() => deleteBook(`${user.id}`, id)}
           >
             Excluir
           </Link>
