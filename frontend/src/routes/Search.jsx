@@ -7,16 +7,25 @@ import { useState, useEffect } from "react";
 
 import Card from "../components/Card/Card";
 
+//Context
+import { useUser } from "../Context/UserContext";
+
 const Search = () => {
   const [searchBooks, setSearchBooks] = useState([]);
   const [allBooks, setAllBooks] = useState([]); // Livros originais
   const [searchTerm, setSearchTerm] = useState(""); // Termo de busca
+  const { user, loading } = useUser();
+  
 
   useEffect(() => {
+
+    if (loading || !user) {
+      return; // Sai da função se o usuário ainda está sendo carregado ou não existe
+    }
+    
     const getSearchBooks = async () => {
       try {
-        const user = "66a3f31891ae8751357cda7f";
-        const res = await axios.get(`users/books/${user}`);
+        const res = await axios.get(`users/books/${user.id}`);
 
         setSearchBooks(res.data);
         setAllBooks(res.data); // Armazenar todos os livros para pesquisa local
@@ -38,6 +47,8 @@ const Search = () => {
 
     setSearchBooks(filteredBooks);
   };
+
+ 
 
   console.log(searchBooks);
 
