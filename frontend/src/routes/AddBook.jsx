@@ -1,7 +1,5 @@
 import "./AddBook.css";
 
-import * as FaIcons from "react-icons/fa";
-
 //Components
 import ChooseBook from "../components/ChooseBook";
 import ConfirmBook from "../components/ConfirmBook";

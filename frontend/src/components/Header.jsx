@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 
 import "./Header.css";
 import { IconContext } from "react-icons";
+import logo from "../assets/img/logo-naminhaestante.png";
+import avatarProfile from "../assets/icons/avatar-profile.png"
 
 const Header = () => {
 
@@ -11,10 +13,10 @@ const Header = () => {
       <>
         <div className="header">
           <Link to="#" className="menu-bars">
-            <img src="https://via.placeholder.com/50x50" alt="logo" />
+            <img className="logo" src={logo} alt="logo" />
           </Link>
           <Link to="#" className="menu-bars profile-img">
-          <img src="https://via.placeholder.com/50x50" alt="logo" />
+          <img  src={avatarProfile} alt="logo" />
           </Link>
         </div>
       

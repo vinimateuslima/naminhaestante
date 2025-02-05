@@ -3,7 +3,6 @@ import Carousel from "../components/Carousel/Carousel";
 import axios from "../axios-config";
 
 import CategorySection from "../components/CategorySection/CategorySection";
-import Card from "../components/Card/Card";
 
 import { useState, useEffect } from "react";
 
@@ -14,6 +13,9 @@ const Home = () => {
   // const [books, setBooks] = useState([]);
   const [categories, setCategories] = useState([]);
   const { user, loading } = useUser();
+  const [userName, setUserName ] = useState("");
+
+  console.log("passou por aqui");
 
   useEffect(() => {
     // Verifica se o usuário está carregando ou é nulo
@@ -22,6 +24,8 @@ const Home = () => {
     }
 
     console.log(user);
+
+    setUserName(user.username);
 
     const getBooks = async () => {
       try {
@@ -44,7 +48,9 @@ const Home = () => {
     };
 
     getBooks();
-  }, [user]);
+ 
+
+  }, [loading, user]);
 
   const categoryKeys = Object.keys(categories);
 
@@ -52,12 +58,14 @@ const Home = () => {
     return <div>Carregando...</div>; // Feedback visual enquanto carrega
   }
 
+  console.log("passou por aqui 2");
+
   return (
     <>
       <Header />
       <div id="home">
         <h1 className="bem-vindo">
-          Bem vindo(a), <span>{user.username}</span>
+          Bem vindo(a), <span>{userName}</span>
         </h1>
         <Carousel />
         {console.log(categories)}

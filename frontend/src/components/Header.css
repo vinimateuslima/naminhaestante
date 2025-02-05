@@ -4,7 +4,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 2rem;
+    padding: 4px 2rem;
     position: sticky;
     top: 0;
     z-index: 1;
@@ -16,7 +16,13 @@
     height: 100%;
   }
 
+  .menu-bars .logo {
+    width: 110px;
+  }
 
+  .profile-img img {
+    width: 40px;
+  }
 
   .header-menu {
     background-color: var(--primary-color);

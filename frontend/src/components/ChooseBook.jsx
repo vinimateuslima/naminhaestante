@@ -13,7 +13,7 @@ const ChooseBook = ({ data, updateFieldHandler }) => {
   const getGoogleBooks = async () => {
     try {
       const apiKey = "AIzaSyCkHU_f9A5tkTVWUdZQ7kmNpp4L1wF8uUs";
-      const searchGoogle = search || "harry potter";
+      const searchGoogle = search || "best seller";
       const url = `https://www.googleapis.com/books/v1/volumes?q=${searchGoogle}&maxResults=9&key=${apiKey}`;
       const response = await fetch(url);
       const dataGoogle = await response.json();
@@ -92,7 +92,7 @@ const ChooseBook = ({ data, updateFieldHandler }) => {
                 img={
                   book.volumeInfo.imageLinks
                     ? book.volumeInfo.imageLinks.thumbnail
-                    : "http://via.placeholder.com/90x142"
+                    : "https://placehold.co/90x142"
                 }
                 selected={selectedCard === book.id}
                 onClick={() => handleClick(book)}
